@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Community — Join Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1b2d42;
+            --navy-light: #243447;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --cream: #f5f0e8;
+            --text-muted: #8a9ab0;
+        }
+
+        body {
+            background-color: var(--navy);
+            color: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(13, 27, 42, 0.97) !important;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            padding: 1.1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: var(--gold) !important;
+        }
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.4rem 1.1rem !important;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+
+        /* HEADER */
+        .page-header {
+            padding: 70px 0 50px;
+            text-align: center;
+        }
+        .page-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: var(--navy-mid);
+            border: 1px solid rgba(201,168,76,0.18);
+            padding: 2.5rem;
+        }
+        .form-label {
+            font-size: 0.72rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 0.5rem;
+        }
+        .form-control, .form-select {
+            background: rgba(13,27,42,0.7) !important;
+            border: 1px solid rgba(201,168,76,0.2) !important;
+            color: var(--cream) !important;
+            border-radius: 0;
+        }
+
+        /* BUTTONS */
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-outline-gold {
+            border: 1px solid rgba(201,168,76,0.4);
+            color: var(--gold);
+            background: transparent;
+            padding: 0.8rem 2rem;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* RESULT BOX */
+        .result-box {
+            background: rgba(201,168,76,0.07);
+            border: 1px solid rgba(201,168,76,0.3);
+            padding: 1.4rem 1.6rem;
+            margin-top: 1.8rem;
+            display: none;
+        }
+        .result-box.show { display: block; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Tech Community</a>
+        <div class="navbar-nav ms-auto d-flex flex-row">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link active" href="form.html">Join Us</a>
+            <a class="nav-link" href="gallery.html">Gallery</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="container">
+        <p class="page-label">Pendaftaran Anggota</p>
+        <h1>Join <em>Us</em></h1>
+    </div>
+</div>
+
+<section class="form-section mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-card">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Alamat Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="contoh@email.com">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Bidang Minat</label>
+                        <select class="form-select" id="minat">
+                            <option value="" disabled selected>Pilih minat</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn-gold" onclick="handleFormSubmit()">Daftar Sekarang</button>
+                        <button class="btn-outline-gold" onclick="handleReset()">Reset</button>
+                    </div>
+
+                    <div class="result-box" id="resultBox">
+                        <p style="color: var(--gold); font-size: 0.8rem;">✓ DATA TERSIMPAN PERMANEN</p>
+                        <div class="small">
+                            <p>Nama: <span id="resNama"></span></p>
+                            <p>Email: <span id="resEmail"></span></p>
+                            <p>Minat: <span id="resMinat"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+
+<script>
+    // Fungsi ini memanggil logika yang ada di script.js
+    function handleFormSubmit() {
+        // Ambil data input
+        const nama = document.getElementById('nama').value;
+        const email = document.getElementById('email').value;
+        const minat = document.getElementById('minat').value;
+
+        if (!nama || !email || !minat) {
+            alert('Lengkapi semua data!');
+            return;
+        }
+
+        // Simpan ke LocalStorage menggunakan fungsi di script.js (jika sudah ada)
+        // Atau kita buat logika simpan di sini agar aman:
+        let members = JSON.parse(localStorage.getItem("techMembers")) || [
+            { nama: "Salman Alfarizi", email: "salman@example.com", minat: "Cyber Security" }
+        ];
+
+        members.push({ nama, email, minat });
+        localStorage.setItem("techMembers", JSON.stringify(members));
+
+        // Tampilkan feedback di UI
+        document.getElementById('resNama').textContent = nama;
+        document.getElementById('resEmail').textContent = email;
+        document.getElementById('resMinat').textContent = minat;
+        document.getElementById('resultBox').classList.add('show');
+
+        alert('Berhasil mendaftar! Cek halaman Home.');
+        
+        // Bersihkan input
+        document.getElementById('nama').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('minat').value = '';
+    }
+
+    function handleReset() {
+        document.getElementById('nama').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('minat').value = '';
+        document.getElementById('resultBox').classList.remove('show');
+    }
+</script>
+
+</body>
+</html>
