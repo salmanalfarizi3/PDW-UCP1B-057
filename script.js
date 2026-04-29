@@ -77,4 +77,4 @@ function submitForm(event) {
     document.getElementById("nama").value  = "";
     document.getElementById("email").value = "";
     document.getElementById("minat").value = "";
-}
+}//
